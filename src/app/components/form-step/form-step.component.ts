@@ -24,7 +24,7 @@ export class FormStepComponent{
   
 
   min = this.env.min
-  minF = this.env.minF
+  minF = 10000000
 
   contacto:ContactoInterface = {
     DatosBasicos: {
