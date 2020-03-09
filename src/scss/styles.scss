@@ -48,13 +48,14 @@ body{
 
 .titlesPpal{
     .titleOne{
-        color: #808080;
+        color: black;
         margin: 10px 0px;
         font-size: 14px;
         margin: 10px 0px 0px 0px;
+        font-weight: 700;
     }
     .titleTwo{
-        color: #878787;
+        color: black;
         text-align: center;
         font-size: 14px;
         margin: 0px 0px 5px 0px;
@@ -151,10 +152,10 @@ button:focus {
         padding: 0px 18px 0px 18px;
         text-align: justify;
         @include sSmall(){
-            height: 48rem;
+            height: 44rem;
         }
         @include mSmall(){
-            height: 43rem;
+            height: 39rem;
         }
         @include lSmall(){
             height: 41rem;

@@ -51,14 +51,15 @@ body {
 }
 
 .titlesPpal .titleOne {
-  color: #808080;
+  color: black;
   margin: 10px 0px;
   font-size: 14px;
   margin: 10px 0px 0px 0px;
+  font-weight: 700;
 }
 
 .titlesPpal .titleTwo {
-  color: #878787;
+  color: black;
   text-align: center;
   font-size: 14px;
   margin: 0px 0px 5px 0px;
@@ -167,13 +168,13 @@ button:focus {
 
 @media only screen and (min-width: 320px) {
   .containerModal .squareModal {
-    height: 48rem;
+    height: 44rem;
   }
 }
 
 @media only screen and (min-width: 375px) {
   .containerModal .squareModal {
-    height: 43rem;
+    height: 39rem;
   }
 }
 
