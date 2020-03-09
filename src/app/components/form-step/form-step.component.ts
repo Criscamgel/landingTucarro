@@ -12,7 +12,7 @@ export class FormStepComponent{
 
   constructor(private centrales: CentralesService) { }
   
-  public env = environment;
+  env:any = environment;
   modal:boolean = false;
   valorFinanciarCop:any;
   editable:boolean = true;
