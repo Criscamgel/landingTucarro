@@ -208,7 +208,7 @@ Entiendo y acepto que Santander Consumer tenga publicadas sus políticas de reco
 
         <!-- Paso 2 -->
 
-        <mat-step label='' [stepControl]="formTct" [editable]="editable" completed="false">
+        <mat-step label='' [stepControl]="formTct" [editable]="editable" linear="true">
             <form #formTct="ngForm" (ngSubmit)="sendCentrales()">
                 <div class="row absolute dosStep">
                     <div class="col-12 col-sm-12">
@@ -294,14 +294,13 @@ Entiendo y acepto que Santander Consumer tenga publicadas sus políticas de reco
         
 <!-- Paso 3 --><mat-step completed="false">
 
+    <div class="row absolute tresStep">
         <div *ngIf="sppiner" class="col-12 spinnerCont">
             <mat-spinner></mat-spinner>
-        </div> 
-
-        <div class="row absolute tresStep">
+        </div>
                 <div class="text-center col-12 col-sm-12">                    
                     <div *ngIf="aprobado" class="col-12 container text-center animated fadeIn">                                     
-                        <p class="title">¡listo!</p>
+                        <p class="title">¡Listo!</p>
                         <hr>  
                         <img class="img-fluid" src="../../../assets/aprobado.png" alt="">
                         <p class="aprobado">¡Tu solicitud es viable!</p>

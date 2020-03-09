@@ -1,6 +1,5 @@
 export const environment = {
   production: true,
-
   /* Options */
   documentos:[
     {value:null, name:"Selecciona tu tipo de Identificación"},
