@@ -55,11 +55,9 @@
                                     (keypress)="patternCoincide($event, env.patternLetter)"
                                     [(pattern)]="env.patternLetter"
                                     required>
-                                    <div class="row">
-                                        <small class="col-12 error" *ngIf="nombre.touched && nombre.errors?.required">Necesitamos saber tu nombre</small>
-                                        <small class="col-12 error" *ngIf="nombre.touched && nombre.errors?.minlength">Ingresa un nombre más largo</small>
-                                        <small class="col-12 error" *ngIf="nombre.touched && nombre.errors?.pattern">Ingresa un nombre válido</small>
-                                    </div>
+                                        <mat-error class="col-12 error" *ngIf="nombre.touched && nombre.errors?.required">Necesitamos saber tu nombre</mat-error>
+                                        <mat-error class="col-12 error" *ngIf="nombre.touched && nombre.errors?.minlength">Ingresa un nombre más largo</mat-error>
+                                        <mat-error class="col-12 error" *ngIf="nombre.touched && nombre.errors?.pattern">Ingresa un nombre válido</mat-error>
                                 </mat-form-field>
                                 </div>
 
@@ -92,11 +90,9 @@
                                         (keypress)="patternCoincide($event, env.patternNumber)"
                                         [(pattern)]="env.patternNumber"
                                         required>
-                                        <div class="row">
-                                            <small class="col-12 error" *ngIf="numeroDocumento.touched && numeroDocumento.errors?.required">Necesitamos saber tu número de identificación</small>
-                                            <small class="col-12 error" *ngIf="numeroDocumento.errors?.minlength">Mínimo {{numeroDocumento.errors.minlength.requiredLength}} dígitos</small>
-                                            <small class="col-12 error" *ngIf="numeroDocumento.errors?.pattern">Ingresa un número de identificación válido</small>
-                                        </div>                       
+                                            <mat-error class="col-12 error" *ngIf="numeroDocumento.touched && numeroDocumento.errors?.required">Necesitamos saber tu número de identificación</mat-error>
+                                            <mat-error class="col-12 error" *ngIf="numeroDocumento.errors?.minlength">Mínimo {{numeroDocumento.errors.minlength.requiredLength}} dígitos</mat-error>
+                                            <mat-error class="col-12 error" *ngIf="numeroDocumento.errors?.pattern">Ingresa un número de identificación válido</mat-error>                       
                                 </mat-form-field>
                                 </div>
 
@@ -132,8 +128,8 @@
                                         [(pattern)]="env.patternMail"
                                         required
                                         >                                       
-                                        <small *ngIf="correoPersonal.touched && correoPersonal.errors?.required" class="error">Necesitamos saber tu correo electrónico</small>
-                                        <small *ngIf="correoPersonal.touched && correoPersonal.errors?.pattern" class="error">Ingresa un correo electrónico válido</small>                                                            
+                                        <mat-error *ngIf="correoPersonal.touched && correoPersonal.errors?.required" class="error">Necesitamos saber tu correo electrónico</mat-error>
+                                        <mat-error *ngIf="correoPersonal.touched && correoPersonal.errors?.pattern" class="error">Ingresa un correo electrónico válido</mat-error>                                                            
                                     </mat-form-field>                                                                  
                                 </div>
                                     <div class="row">
@@ -264,8 +260,8 @@ Entiendo y acepto que Santander Consumer tenga publicadas sus políticas de reco
                                 [options]="{ align: 'left', prefix: '$ ', thousands: '.', decimal: ',', precision: 0 }"
                                 [min]="env.min"
                                 required/>
-                                <small *ngIf="ingresoMensual.touched && ingresoMensual.errors?.required" class="error col-12">Inserta tus ingresos mensuales</small>       
-                                <small *ngIf="ingresoMensual.touched && ingresoMensual.errors?.min" class="error col-12">Ingresa un valor mayor</small>
+                                <mat-error *ngIf="ingresoMensual.touched && ingresoMensual.errors?.required" class="error col-12">Inserta tus ingresos mensuales</mat-error>       
+                                <mat-error *ngIf="ingresoMensual.touched && ingresoMensual.errors?.min" class="error col-12">Ingresa un valor mayor</mat-error>
                             </mat-form-field>
                     </div> 
                     
@@ -282,8 +278,8 @@ Entiendo y acepto que Santander Consumer tenga publicadas sus políticas de reco
                                     [options]="{ align: 'left', prefix: '$ ', thousands: '.', decimal: ',', precision: 0 }"
                                     [min]="env.minF"
                                     required>
-                                    <small *ngIf="valorFinanciar.touched && valorFinanciar.errors?.required" class="error error col-12">Inserta el valor a financiar</small>   
-                                    <small *ngIf="valorFinanciar.touched && valorFinanciar.errors?.min" class="error error col-12">Ingresa un valor mayor</small>
+                                    <mat-error *ngIf="valorFinanciar.touched && valorFinanciar.errors?.required" class="error error col-12">Inserta el valor a financiar</mat-error>   
+                                    <mat-error *ngIf="valorFinanciar.touched && valorFinanciar.errors?.min" class="error error col-12">Ingresa un valor mayor</mat-error>
                                 </mat-form-field>
                     </div>
 
