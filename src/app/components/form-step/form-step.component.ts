@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.prod';
 import { CentralesService } from '../../services/centrales.service';
 
 
@@ -12,8 +12,6 @@ export class FormStepComponent{
 
   constructor(private centrales: CentralesService) { }
   
-
-  mail = RegExp("^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
   env = environment;
   modal:boolean = false;
   valorFinanciarCop:any;
@@ -21,10 +19,7 @@ export class FormStepComponent{
   aprobado:boolean = false;
   negado:boolean = false;
   sppiner:boolean = true;
-  
-
-  min = this.env.min
-  minF = 10000000
+  dateNow = new Date().getFullYear();
 
   contacto:ContactoInterface = {
     DatosBasicos: {
@@ -51,30 +46,20 @@ export class FormStepComponent{
 
   /* Functions */
 
-  oldLetters(event: any) {    
-    const pattern =  new RegExp(environment.patternLetter);    
-    let inputChar = String.fromCharCode(event.charCode);
-    if (event.keyCode != 8 && !pattern.test(inputChar)) {
-      event.preventDefault();
-    }
-  }
-
-  oldNumbers(event: any) {
-    const pattern =  new RegExp(environment.patternNumber);    
-    let inputChar = String.fromCharCode(event.charCode);
-    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+  patternCoincide(event, value) {
+    const pattern =  new RegExp(value);
+    const inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode !== 8 && !pattern.test(inputChar)) {
       event.preventDefault();
     }
   }
 
   chechedc(this){
-    this.contacto.OtrosDatos.AutorizaMareigua = true       
+    this.contacto.OtrosDatos.AutorizaMareigua = true;
   }
 
   sendCentrales(this){    
     this.editable = false;
-
-    console.log("this.contacto ---> ", this.contacto);
     
     
     if(this.contacto.DatosFinancieros.ActividadEconomica){
@@ -108,14 +93,6 @@ export class FormStepComponent{
      }, 3000);
     
   }
-
-  toNumber(val){
-    let valArr=val.split('');
-    let valFiltered = valArr.filter(x=> !isNaN(x))
-    let valProcessed = valFiltered.join('')     
-    return Number(valProcessed);
-   }
-
    checkTyc(this){
     this.modal=false; 
     this.contacto.OtrosDatos.AutorizaConsultaCentrales=true;

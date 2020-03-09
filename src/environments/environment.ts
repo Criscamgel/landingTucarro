@@ -1,9 +1,5 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
-
 export const environment = {
-  production: false,
+  production: true,
 
   /* Options */
   documentos:[    
@@ -26,32 +22,17 @@ export const environment = {
 
   /* Regex */
   patternLetter: "^[a-zA-Z áéíóúñÁÉÍÓÚÑ]+$",
-  patternNumber: "^[0-9]+$",
-  patternMail: RegExp("^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"),
+  patternNumber: "[0-9]+$",
+  patternCel: "^3+[0-9]{0,10}$",
+  patternMail: "^(([^<>()\[\]\\.,;:\s@]+(\.[^<>()\[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$",
 
   /* Urls */
   urlAt: "https://api.premiercredit.co:11445/PremierServices_API_EXT_TST/api/login/authenticate",
-  /* -- Prod -- */
-  /* urlAt: "https://api.premiercredit.co:11444/PremierServices_API_EXT/api/login/authenticate", */
-
-  /* getViabilizacion */
-
+  /*urlAp: "https://api.premiercredit.co:11444/PremierServices_API_EXT/api/login/authenticate" */
   urlVt: "https://api.premiercredit.co:11445/PremierServices_API_EXT_TST/api/viabilizacion/getviabilizacion",
-  /* -- Prod -- */
-  /* urlVt: "https://api.premiercredit.co:11444/PremierServices_API_EXT/api/viabilizacion/getviabilizacion",
- */
+  /*urlVp: "https://api.premiercredit.co:11444/PremierServices_API_EXT/api/viabilizacion/getviabilizacion" */
+
   /* Credentials */
   username: "TuCarro",
-  password: "tuC@rr02019",
-  respuesta: {}
-
+  password: "tuC@rr02019"
 };
-
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.

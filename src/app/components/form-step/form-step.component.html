@@ -52,6 +52,7 @@
                                     maxlength="90"
                                     [(ngModel)]="contacto.DatosBasicos.Nombre1"
                                     #nombre="ngModel"
+                                    (keypress)="patternCoincide($event, env.patternLetter)"
                                     [(pattern)]="env.patternLetter"
                                     required>
                                     <div class="row">
@@ -88,7 +89,7 @@
                                         minlength="6"
                                         maxlength="15"
                                         placeholder="Número de Identificación"
-                                        (keypress)="oldNumbers($event)"
+                                        (keypress)="patternCoincide($event, env.patternNumber)"
                                         [(pattern)]="env.patternNumber"
                                         required>
                                         <div class="row">
@@ -107,21 +108,18 @@
                                             placeholder="Teléfono de contacto"
                                             name="Celular"
                                             [(ngModel)]="contacto.DatosBasicos.Celular"
-                                            minlength="7" 
+                                            minlength="10" 
                                             maxlength="10"
                                             #celular="ngModel"
-                                            (keypress)="oldNumbers($event)"
-                                            [(pattern)]="env.patternNumber"
+                                            (keypress)="patternCoincide($event, env.patternNumber)"
+                                            [(pattern)]="env.patternCel"
                                             required
-                                            >
-                                            <div class="row">
-                                                <small class="col-12 error"*ngIf="celular.touched && celular.errors?.required">Necesitamos saber tu teléfono de contacto</small>
-                                                <small class="col-12 error"*ngIf="celular.errors?.minlength">Mínimo {{celular.errors.minlength.requiredLength}} dígitos</small>
-                                                <small class="col-12 error"*ngIf="celular.errors?.pattern">Ingresa un teléfono de contacto válido</small>
-                                            </div>
-                                    </mat-form-field>
+                                            >                                            
+                                            <mat-error class="col-12 error"*ngIf="celular.touched && celular.errors?.required">Necesitamos saber tu teléfono de contacto</mat-error>
+                                            <mat-error class="col-12 error"*ngIf="celular.errors?.minlength">Mínimo {{celular.errors.minlength.requiredLength}} dígitos</mat-error>
+                                            <mat-error class="col-12 error"*ngIf="celular.errors?.pattern">Ingresa un teléfono de contacto válido</mat-error>
+                                    </mat-form-field>                                    
                                 </div>
-
                                 <div class="col-12 col-sm-12 col-12-md col-12-lg">
                                     <mat-form-field class="full-width">
                                         <input
@@ -131,7 +129,7 @@
                                         name="CorreoPersonal"
                                         [(ngModel)]="contacto.DatosBasicos.CorreoPersonal"
                                         #correoPersonal="ngModel"
-                                        pattern="^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"
+                                        [(pattern)]="env.patternMail"
                                         required
                                         >                                       
                                         <small *ngIf="correoPersonal.touched && correoPersonal.errors?.required" class="error">Necesitamos saber tu correo electrónico</small>
@@ -180,12 +178,27 @@
                               <hr class="hrModal">
                               <div class="btnTyc">
                                 <div class="squareModal">
-                                      <p>Por medio de la presente manifiesto que he (hemos) leído y acepto (amos) los términos
-                                            y condiciones a continuación descritos para la solicitud del producto:</p><br><br>
-                                      <Strong>Consulta a centrales de riesgo y bases de datos</Strong><br><br>
-                                      <p>Autorizo(amos) de manera expresa e irrevocable a Santander Consumer Finance(indistintamente “Santander Consumer Finance” o “Santander”), y a quien represente sus derechos o a sus sucesores a cualquier título a: 1. Reportar, procesar, solicitar y divulgar a cualquier Operador de bases de datos e información financiera, crediticia, comercial, de servicios y proveniente de terceros países, toda la información referente a mi (nuestro) comportamiento como cliente(s) o prospecto de clientes de Banco Santander, de conformidad con los reglamentos a los cuales se sujeten las entidades antes mencionadas y la normatividad vigente sobre bases de datos. 2. Consultar ante cualquier Operador de bases de datos e información financiera, crediticia, comercial, de servicios y proveniente de terceros países mi (nuestro) endeudamiento directo o indirecto con las entidades financieras del país así como la información disponible sobre el cumplimiento o manejo dado a mis (nuestros) compromisos y obligaciones con dicho sector. 3. Conservar, tanto en Banco Santander, como en los Operadores de bases de datos e información financiera, crediticia, comercial, de servicios y proveniente de terceros países, con las debidas actualizaciones y durante el periodo necesario señalado en las disposiciones legales o en sus reglamentos, la información indicada en los numerales (1) y (2) anteriores. 4. Suministrar a cualquier Operador de bases de datos e información financiera, crediticia, comercial, de servicios y proveniente de terceros países, información relativa a mis (nuestras) solicitud(es) de crédito así como datos atinentes a mis (nuestras) relaciones comerciales, financieras y en general socioeconómicas que haya(mos) entregado o que consten en registros públicos, bases de datos públicas o documentos públicos. 5. Suministrar toda la información consultada y almacenada por Banco Santander, a quien represente sus derechos o a sus sucesores a cualquier título, a las matrices, filiales o subordinadas de la matriz y demás entidades vinculadas con el mismo grupo, así como a terceros para fines comerciales. Declaro(amos) que conozco(conocemos) y acepto(amos) que los reportes negativos que Banco Santander, a cualquier título realice a cualquier Operador de bases de datos e información financiera, crediticia, comercial, de servicios y proveniente de terceros países, pueden generar consecuencias negativas en su acceso al crédito y demás servicios financieros, así como conozco(conocemos) el derecho que me(nos) asiste de solicitar rectificación y actualización de la información cuando esta no corresponda con la realidad crediticia, sin que tal derecho implique revocatoria alguna de las autorizaciones que se confieren a Banco Santander. <p>
-                                      <Strong>Consulta a Mareigua Ltda. </Strong><br><br>
-                                      <p>Entiendo(emos) y acepto(amos) que Santander Consumer Finance(en adelante Santander), aliado en el proceso de crédito de vehículo, informa que tiene publicadas sus políticas de recolección, uso, y administración de la información personal en la página www.santander.com.co El o los titulares de la información personal informan a Santander que en desarrollo de los pagos efectuados de aportes al Sistema de Protección Social, en desarrollo de la autoliquidación y pagos o de la liquidación por parte de un eventual empleador, han entregado su información personal al diligenciar la Planilla Integrada de Liquidación de Aportes -PILA- información relacionada con los ingresos mensuales base de cotización, pagos a través del PILA y otros datos financieros. Con base en lo anterior, el (los) titular(es)de la información confiere(n) autorización a Santander para tratar su información personal, recolectar, transferir, almacenar, usar, circular, suprimir, compartir, actualizar, y transmitir la información personal con los siguientes fines: 1) Análisis de riesgos financieros, para ofrecimiento de productos financieros; 2) Para el procesamiento de la información y con el resultado, se entreguen reportes a los establecimientos de crédito aliados de Santander para que se analice y decida sobre el otorgamiento de productos financieros; 3) Para recolectar datos personales, consultarlos, procesarlos, divulgarlos y mantenerlos, en cualquier operador de base de datos. Se reconoce y acepta que los datos objeto de tratamiento, pueden llegar a quedar alojados fuera de Colombia, en virtud de contratos o procesamiento de tal información con responsables de tal manejo fuera de Colombia, caso en el cual Santander entregará información bajo la existencia de un contrato y a responsables ubicados en países con un nivel de protección de datos similar o superior al existente en Colombia. Se deja expresa constancia que la presente autorización puede ser revocada por el usuario y titular de la información personal, en la medida que se cumplan los requisitos legales para tal revocatoria. Lo anterior se encuentra de conformidad con la Ley 1581 de 2012. </p>
+                                <br>   
+                                    <strong>TERMINOS Y CONDICIONES PORTAL Mercadolibre - Tu carro</strong>
+                                <br><br> 
+
+Es requisito indispensable que el solicitante, entendido este como cualquier persona natural o jurídica que acceda al presente Portal (Mercadolibre - Tu carro) y desee iniciar una solicitud para estudio de viabilidad de financiación de vehículo automotor con Santander Consumer Finance S.A.S (En adelante “Santander Consumer”), entienda y acepte de manera expresa, voluntaria e irrevocable los términos y condiciones que a continuación se indican:
+
+El presente Portal es solo un canal para recopilar información personal del solicitante, con la finalidad de poder realizar el estudio crediticio del mismo para la determinación de la aprobación o no del crédito.
+
+El otorgamiento de los planes de financiación anunciados así como las tasas ofrecidas, están sujetas al cumplimiento de las políticas de crédito de las entidades financieras aliadas de Santander Consumer y al perfil crediticio del solicitante. 
+
+Si el solicitante no está de acuerdo con estos Términos y Condiciones, o si el usuario es menor de 18 años no deberá hacer uso de este portal.<br><br>
+
+
+El titular (solicitante) de la información entregada a través del Portal,  autoriza a Santander Consumer a consultar, reportar y compartir información para: a) Realizar consultas, solicitudes y reportes de toda la información de comportamiento crediticio ante cualquiera de los operadores de información financiera. Así mismo, Santander Consumer queda autorizado para obtener información sobre relaciones comerciales del titular con otras entidades y consultar sus reportes ante las centrales de información; para ello se autoriza de manera expresa, previa e irrevocable a Santander Consumer a realizar ante cualquier operador de centrales de información, entre ellos Cifín o Datacrédito, cualquier operación o tratamiento efectuado sobre la información y los datos entregados, tanto de la empresa, como de sus representantes o directivos, incluyendo la consulta, solicitud, suministro, reporte, procesamiento y divulgación de toda la información relacionada con el comportamiento crediticio del titular, el origen de las obligaciones a su cargo, cualquier novedad, modificación, extinción, cumplimiento o incumplimiento de obligaciones.<br><br>
+
+
+En su condición de responsable o encargado del tratamiento del manejo de datos personales que puede llegar a tener Santander Consumer, el titular autoriza para efectos de la Ley Estatutaria de Protección de Datos Personales (Ley 1581 de 2012) o de la norma que la reemplace o sustituya, en concordancia con la Ley Estatutaria 1266 de 2008, por la cual se dictaron disposiciones generales del hábeas data y se reguló el manejo de información contenida en bases de datos personales, en especial la información financiera, crediticia y comercial, de servicios y la proveniente de terceros países, a: (i) Recolectar, obtener, compilar, ofrecer, vender, intercambiar, enviar, divulgar, modificar, emplear, almacenar, procesar, transferir a cualquier título, y, en general, administrar información proveniente del titular de los datos o sus legítimos representantes; de las fuentes de información con las que Santander Consumer celebre convenios o contratos para el efecto; de los registros, documentos o publicaciones a los cuales haya tenido acceso Santander Consumer; de otros bancos de datos o archivos de información cuyo objeto sea o no similar al de Santander Consumer; de autoridades públicas, nacionales o internacionales, que administren o lleven registros del cumplimiento e incumplimiento de obligaciones fiscales, parafiscales, relacionadas con la prevención del lavado de activos o de la financiación del terrorismo y cualquier otra información de carácter público; de bases de información pública y, en general, de cualquier otra permitida por la normatividad aplicable; (ii) Santander Consumer, debidamente autorizado por el titular, podrá suministrar la información que reposa en sus bases de datos a las siguientes personas: a los titulares, a las personas debidamente autorizadas por éstos y a sus causahabientes; a las entidades financieras aliadas de Santander Consumer; a los usuarios de la información, dentro de los parámetros de la ley, de los contratos o convenios suscritos por Santander Consumer; a cualquier autoridad judicial, del poder ejecutivo o administrativa u órganos de control; a operadores de datos, de acuerdo con la normatividad vigente, y, en general a las demás personas autorizadas por la ley; (iii) Para efectos de soportes operativos, de procesamiento de información o tecnológicos, Santander Consumer queda expresamente autorizado, para compartir la información con empresas dedicadas a labores de “outsourcing” o prestación de servicios soportes para entidades financieras, dentro o fuera de Colombia, autorizando el Titular la divulgación, suministro y cesión de la  información, para cuyo efectos Santander Consumer podrá recolectar, obtener, compilar, ofrecer, vender, intercambiar, enviar, divulgar, modificar, emplear, almacenar, procesar, transferir a cualquier título y, en general, hacer todo lo que implica la administración de información para terceros, dentro o fuera de Colombia. Cuando se haga entrega o cesión de información a otros países, se realizará con observancia de la legislación colombiana y las instrucciones de las autoridades correspondientes en la materia.<br><br>
+
+Entiendo y acepto que Santander Consumer tenga publicadas sus políticas de recolección, uso, y administración de la información personal en la página www.santanderconsumer.co<br>
+
+
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-12 contButton">
                                         <button mat-button class="full-width siguiente" (click)="checkTyc()">Aceptar</button>
@@ -249,7 +262,7 @@
                                 #ingresoMensual="ngModel"
                                 [(ngModel)]="contacto.DatosFinancieros.IngresoMensual"
                                 [options]="{ align: 'left', prefix: '$ ', thousands: '.', decimal: ',', precision: 0 }"
-                                [min]="min"
+                                [min]="env.min"
                                 required/>
                                 <small *ngIf="ingresoMensual.touched && ingresoMensual.errors?.required" class="error col-12">Inserta tus ingresos mensuales</small>       
                                 <small *ngIf="ingresoMensual.touched && ingresoMensual.errors?.min" class="error col-12">Ingresa un valor mayor</small>
@@ -267,7 +280,7 @@
                                     #valorFinanciar="ngModel"
                                     [(ngModel)]="contacto.OtrosDatos.ValorFinanciar"
                                     [options]="{ align: 'left', prefix: '$ ', thousands: '.', decimal: ',', precision: 0 }"
-                                    [min]="minF"
+                                    [min]="env.minF"
                                     required>
                                     <small *ngIf="valorFinanciar.touched && valorFinanciar.errors?.required" class="error error col-12">Inserta el valor a financiar</small>   
                                     <small *ngIf="valorFinanciar.touched && valorFinanciar.errors?.min" class="error error col-12">Ingresa un valor mayor</small>
@@ -326,8 +339,8 @@
     <div class="row">
             <div class="col-12 text-center pie">
                     <div class="container">
-                    <img src="../assets/santandergris.png" alt="" class="col-12 santanderGray"><br>
-                    <p class="small">© 2019 - Solicitud de Crédito - Entidad Vigilada por la Superintendencia Financiera de Colombia</p>
+                    <!-- <img src="../assets/santandergris.png" alt="" class="col-12 santanderGray"><br> -->
+                    <p class="small">© {{dateNow}} - Solicitud de crédito</p>
                     </div>
             </div>
     </div>

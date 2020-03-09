@@ -299,7 +299,7 @@ button {
 .encMercadolibre {
   background-color: #FFE600;
   display: grid;
-  grid-template-columns: 0.3fr 1fr 0.3fr;
+  grid-template-columns: 0.2fr 1fr 1fr 1fr 1fr 0.2fr;
   position: fixed !important;
   width: 100%;
   z-index: 1;
@@ -308,13 +308,40 @@ button {
 }
 
 .encMercadolibre img.mercadolibreM {
-  width: 60%;
+  width: 100%;
   align-self: center;
-  justify-self: right;
+  justify-self: left;
+  grid-column: 1/3;
+}
+
+@media only screen and (min-width: 768px) {
+  .encMercadolibre {
+    grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
+  }
+}
+
+@media only screen and (min-width: 1366px) {
+  .encMercadolibre {
+    grid-template-columns: 0.2fr 1fr 1fr 1fr 1fr 0.2fr;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .encMercadolibre {
+    grid-template-columns: 0.2fr 1fr 1fr 1fr 1fr 0.2fr;
+  }
 }
 
 .encMercadolibre img.mercadolibreT {
   display: none;
+  width: 100%;
+  grid-column: 2/3;
+}
+
+@media only screen and (min-width: 1920px) {
+  .encMercadolibre img.mercadolibreT {
+    width: 50%;
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -327,7 +354,7 @@ button {
   .encMercadolibre img.mercadolibreT {
     display: block;
     align-self: center;
-    justify-self: right;
+    justify-self: left;
   }
 }
 
@@ -405,6 +432,7 @@ button {
 .pie p.small {
   font-size: 10px;
   line-height: 1.6;
+  padding: 20px;
 }
 
 @media only screen and (min-width: 768px) {
