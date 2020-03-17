@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +32,7 @@ export class CentralesService {
 
     const body = new HttpParams({fromObject:bodyT}) 
 
-    return this.http.post(`${environment.urlAt}`, body, this.options)
+    return this.http.post(`${environment.urlAp}`, body, this.options)
     .subscribe((resp:any) => {
            this.token = resp.Token
 
@@ -48,7 +48,7 @@ export class CentralesService {
 
   response( contacto:any ){
       contacto = JSON.stringify(contacto)      
-      return this.http.post(`${this.env.urlVt}`, contacto, this.optionsVi)         
+      return this.http.post(`${this.env.urlVp}`, contacto, this.optionsVi)         
   }
 
 }
